@@ -54,4 +54,3 @@ void EscribirArchivo (Persona per)
     archivo.write((char*)&per, sizeof(Persona));
     archivo.close();
 }
-

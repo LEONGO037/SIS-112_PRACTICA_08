@@ -34,24 +34,13 @@ void OrdenarDatos (vector<Articulo>&);
 void ArchivoFichero1 ();
 //Adicionar datos al fichero 2
 void ArchivoFichero2 ();
-
+//Funcion para limpiar el buffer
 void limpiarBuffer();
 int main ()
 {
     int opcion;
     do
     {
-        ifstream arc;
-        arc.open(Nombre_Fichero1, ios::binary);
-        Articulo articu;
-        while(arc.read((char*)&articu, sizeof(Articulo)))
-        {
-            cout<<articu.codigo<<endl;
-            cout<<articu.nombre<<endl;
-            cout<<articu.existencias<<endl;
-            cout<<articu.precio<<endl;
-        }
-        arc.close();
         cout<<"1. Ingresar articulos al fichero 1"<<endl;
         cout<<"2. Ingresar articulos al fichero 2"<<endl;
         cout<<"3. Salir"<<endl;
@@ -85,13 +74,6 @@ void ArchivoFichero1 ()
     ofstream archivo;
     vector<Articulo> articulos;
     articulos = IngresarDatos();
-    for(int i=0;i<articulos.size();i++)
-    {
-        cout<<articulos[i].codigo<<endl;
-        cout<<articulos[i].nombre<<endl;
-        cout<<articulos[i].existencias<<endl;
-        cout<<articulos[i].precio<<endl;
-    }
     archivo.open(Nombre_Fichero1, ios::binary);
     for(int i=0;i<articulos.size();i++)
     {
@@ -104,13 +86,6 @@ void ArchivoFichero2 ()
     ofstream archivo;
     vector<Articulo> articulos;
     articulos = IngresarDatos();
-    for(int i=0;i<articulos.size();i++)
-    {
-        cout<<articulos[i].codigo<<endl;
-        cout<<articulos[i].nombre<<endl;
-        cout<<articulos[i].existencias<<endl;
-        cout<<articulos[i].precio<<endl;
-    }
     archivo.open(Nombre_Fichero2, ios::binary);
     for(int i=0;i<articulos.size();i++)
     {
@@ -122,7 +97,7 @@ void OrdenarDatos (vector<Articulo>& arti)
 {
     for(int i=0;i<arti.size();i++)
     {
-        for(int j=0;j<arti.size();j++)
+        for(int j=0;j<arti.size()-1;j++)
         {
             if(arti[j].codigo>arti[j+1].codigo)
             {
